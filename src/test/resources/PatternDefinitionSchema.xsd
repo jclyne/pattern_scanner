@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="Patterns">
+        <xs:complexType>
+            <xs:sequence>
+
+                <!-- Each pattern is defined by its own pattern node -->
+                <xs:element name="Pattern" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+
+                            <!-- Id for the pattern.  Includes a major and minor-->
+                            <xs:element name="Id" type="xs:positiveInteger" minOccurs="1" maxOccurs="1"/>
+
+                            <!-- Name of the pattern -->
+                            <xs:element name="Name" type="xs:string" minOccurs="1" maxOccurs="1"/>
+
+                            <!-- boundary and RegEx nodes form the patterns to be searched for.
+                           for each boundary
+                               for each RegEx
+                                  pattern = prefix + RegEx + suffix
+                           if no boundary is specified, then just the RegEx's are used.
+
+                           The prefixex, suffises and RegExs are defined using GNU Flex's regular expression
+                           syntax.  See http://flex.sourceforge.net/manual/Patterns.html#Patterns for documentation.
+                           -->
+                            <xs:element name="boundary" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="prefix" type="xs:string" minOccurs="1" maxOccurs="1"/>
+                                        <xs:element name="suffix" type="xs:string" minOccurs="1" maxOccurs="1"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+
+                            <!-- One or more Regular expression strings to associate with the pattern-->
+                            <xs:element name="RegEx" type="xs:string" minOccurs="1" maxOccurs="unbounded"/>
+
+                            <!-- When true, the the pattern match is ignored and the scanner should
+                            advance past the string that match. This is used to hide matching string by
+                            defining a longer, more specific pattern to mask it.
+                            -->
+                            <xs:element name="Ignore" minOccurs="1" maxOccurs="1">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:enumeration value="true"/>
+                                        <xs:enumeration value="false"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+
+                            <!-- When true, the pattern is not available.
+                           -->
+                            <xs:element name="Disabled" minOccurs="1" maxOccurs="1">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:enumeration value="true"/>
+                                        <xs:enumeration value="false"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+
+
+                            <!-- Test patterns that the pattern should catch -->
+                            <xs:element name="TestPattern" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

@@ -1,0 +1,857 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Patterns>
+    <Pattern>
+        <Id>1000000</Id>
+        <Name>Ignore false positive credit card numbers</Name>
+        <boundary>
+            <!-- Ignore decimal numbers that could be identified as a credit card number
+                #.###### -->
+            <prefix>[[:digit:]]\.</prefix>
+            <suffix>[[:^digit:]]</suffix>
+        </boundary>
+        <boundary>
+            <!-- Ignore credit card numberlike patterns that end in "."<punctuation mark> -->
+            <prefix>[[:^digit:]]</prefix>
+            <suffix>\.[[:punct:]]</suffix>
+        </boundary>
+        <boundary>
+            <!-- Ignore credit card numberlike patterns that begin with <punctuation mark> "." -->
+            <prefix>[[:punct:]]\.</prefix>
+            <suffix>[[:^digit:]]</suffix>
+        </boundary>
+        <boundary>
+            <!-- Ignore credit card numberlike patterns that begin with any of the following punctuation marks
+                ! $ % & ) * + / < ? @ \ ] ^  ` } ~
+           -->
+            <prefix>[!$%&amp;)*+/&lt;?@\\\]^`}~]</prefix>
+            <suffix>[[:^digit:]]</suffix>
+        </boundary>
+        <boundary>
+            <!-- Ignore credit card numberlike patterns that end with any of the following punctuation marks
+                # $ % ( * + / = > @ \ ^  ` { ~ [ -
+           -->
+            <prefix>[[:^digit:]]</prefix>
+            <suffix>[#$%(*+/=&gt;@\\^`{~[-]</suffix>
+        </boundary>
+        <boundary>
+            <!-- Ignore credit card numberlike patterns often found in RTMPT Posts
+                 prefix is &unqID=    suffix is &tile=
+           -->
+            <prefix>&amp;unqID=</prefix>
+            <suffix>&amp;tile=</suffix>
+        </boundary>
+        <boundary>
+            <!-- Ignore credit card numberlike patterns found in a page submission id-->
+            <prefix>&amp;p_page_submission_id=</prefix>
+            <suffix>&amp;</suffix>
+        </boundary>
+        <RegEx>4[[:digit:]]{15}</RegEx>
+        <RegEx>5[1-5][[:digit:]]{14}</RegEx>
+        <RegEx>3[47][[:digit:]]{13}</RegEx>
+        <RegEx>30[0-5][[:digit:]]{11}</RegEx>
+        <RegEx>3[68][[:digit:]]{12}</RegEx>
+        <RegEx>6011[[:digit:]]{12}</RegEx>
+        <RegEx>62212[6-9][[:digit:]]{10}</RegEx>
+        <RegEx>6221[3-9][[:digit:]]{11}</RegEx>
+        <RegEx>622[2-8][[:digit:]]{12}</RegEx>
+        <RegEx>6229[01][[:digit:]]{11}</RegEx>
+        <RegEx>62292[0-5][[:digit:]]{10}</RegEx>
+        <RegEx>64[4-9][[:digit:]]{13}</RegEx>
+        <RegEx>65[[:digit:]]{14}</RegEx>
+        <RegEx>5018[[:digit:]]{8,15}</RegEx>
+        <RegEx>5020[[:digit:]]{8,15}</RegEx>
+        <RegEx>5038[[:digit:]]{8,15}</RegEx>
+        <RegEx>6304[[:digit:]]{8,15}</RegEx>
+        <RegEx>6759[[:digit:]]{8,15}</RegEx>
+        <RegEx>6761[[:digit:]]{8,15}</RegEx>
+        <RegEx>6763[[:digit:]]{8,15}</RegEx>
+        <RegEx>352[89][[:digit:]]{12}</RegEx>
+        <RegEx>35[3-8][[:digit:]]{13}</RegEx>
+        <RegEx>6706[[:digit:]]{12,15}</RegEx>
+        <RegEx>6771[[:digit:]]{12,15}</RegEx>
+        <RegEx>6709[[:digit:]]{12,15}</RegEx>
+        <RegEx>6334[[:digit:]]{12}</RegEx>
+        <RegEx>6767[[:digit:]]{12}</RegEx>
+        <RegEx>6334[[:digit:]]{14,15}</RegEx>
+        <RegEx>6767[[:digit:]]{14,15}</RegEx>
+        <RegEx>62212[6-9][[:digit:]]{10,13}</RegEx>
+        <RegEx>6221[3-9][[:digit:]]{11,14}</RegEx>
+        <RegEx>622[2-8][[:digit:]]{12,15}</RegEx>
+        <RegEx>6229[01][[:digit:]]{11,14}</RegEx>
+        <RegEx>62292[0-5][[:digit:]]{10,13}</RegEx>
+
+        <Ignore>true</Ignore>
+        <Disabled>false</Disabled>
+        <TestPattern>4002754335254217./</TestPattern>
+        <TestPattern>4036842529905023#</TestPattern>
+        <TestPattern>4037566083586213$</TestPattern>
+        <TestPattern>4038072336902629%</TestPattern>
+        <TestPattern>4041746361472344(</TestPattern>
+        <TestPattern>4043630458428609*</TestPattern>
+        <TestPattern>4044522662775025+</TestPattern>
+        <TestPattern>4046883802679388-</TestPattern>
+        <TestPattern>4048020030693869/</TestPattern>
+        <TestPattern>4052434283702116=</TestPattern>
+        <TestPattern>4053854339539262></TestPattern>
+        <TestPattern>4055634802188781@</TestPattern>
+        <TestPattern>4056704062760980[</TestPattern>
+        <TestPattern>4057538401109023\</TestPattern>
+        <TestPattern>4059124878638725^</TestPattern>
+        <TestPattern>4060947144774123{</TestPattern>
+        <TestPattern>4063183575113345~</TestPattern>
+        <TestPattern>!4004080682512652</TestPattern>
+        <TestPattern>#.4003438516914034</TestPattern>
+        <TestPattern>$4007259465083324</TestPattern>
+        <TestPattern>%4008094797013171</TestPattern>
+        <TestPattern>&amp;4009946996829534</TestPattern>
+        <TestPattern>&amp;p_page_submission_id=4067927667045583&amp;</TestPattern>
+        <TestPattern>&amp;unqID=4066927667045584&amp;tile=</TestPattern>
+        <TestPattern>)4012008690805479</TestPattern>
+        <TestPattern>*4013010065388650</TestPattern>
+        <TestPattern>+4014519150020258</TestPattern>
+        <TestPattern>/4018340949770210</TestPattern>
+        <TestPattern>1.4001927667045582</TestPattern>
+        <TestPattern>&lt;4021487432733463</TestPattern>
+        <TestPattern>?4024736645061469</TestPattern>
+        <TestPattern>@4025807891950918</TestPattern>
+        <TestPattern>\4027868979470623</TestPattern>
+        <TestPattern>]4028579133636608</TestPattern>
+        <TestPattern>^4029288831378237</TestPattern>
+        <TestPattern>}4032536433580369</TestPattern>
+        <TestPattern>~4033326546225816</TestPattern>
+    </Pattern>
+    <Pattern>
+        <!-- UK Telephone Number 011-44-####-##### The first group of 4 digits after the 44 are the
+            possible 4 digit geographic codes 1200 thru 1999
+
+            The SSN pattern could possbily identify 011-44-#### as an SSN -->
+        <Id>1000001</Id>
+        <Name>UK Telephone Number</Name>
+        <RegEx>[[:^alnum:]]{-}[\-]011[ \-]44[ \-]1[2-9][[:digit:]]{2}[ \-][[:digit:]]{5,6}[[:^alnum:]]{-}[\-]</RegEx>
+
+        <Ignore>true</Ignore>
+        <Disabled>false</Disabled>
+    </Pattern>
+    <Pattern>
+        <Id>1000002</Id>
+        <Name>Ignore false positive SSNs</Name>
+        <boundary>
+            <!-- Ignore an SSN with a suffix of ".<digit>" -->
+            <prefix>[[:^alnum:]]{-}[\-]</prefix>
+            <suffix>\.[[:digit:]]</suffix>
+        </boundary>
+        <boundary>
+            <!-- Ignore an SSN with a prefix of "<digit>." -->
+            <prefix>[[:digit:]]\.</prefix>
+            <suffix>[[:^alnum:]]{-}[\-]</suffix>
+        </boundary>
+        <boundary>
+            <!-- Ignore UPS tracking numbers which can contain an SSN pattern
+                1Z XXX 999 99 9999
+           -->
+            <prefix>[[:^alnum:]]1[Zz][ \-]?[[:alnum:]]{3}[ \-]?</prefix>
+            <suffix>[[:^alnum:]]</suffix>
+        </boundary>
+        <RegEx>[[:digit:]]{3}[ \-][[:digit:]]{2}[ \-][[:digit:]]{4}</RegEx>
+
+        <Ignore>true</Ignore>
+        <Disabled>false</Disabled>
+        <TestPattern>1Z 581 199 03 5761</TestPattern>
+        <TestPattern>444-42-1239.3</TestPattern>
+        <TestPattern>3.444-42-1237</TestPattern>
+    </Pattern>
+    <Pattern>
+        <Id>1000003</Id>
+        <Name>Ignore false positive 16 digit numbers that can look like credit card numbers</Name>
+        <boundary>
+            <!-- Ignore credit card numberlike patterns that are requests for streaming video
+                the credit card number is preceeded by "rpin." -->
+            <prefix>rpin\.</prefix>
+            <suffix>[[:^digit:]]</suffix>
+        </boundary>
+        <RegEx>[[:digit:]]{16}</RegEx>
+
+        <Ignore>true</Ignore>
+        <Disabled>false</Disabled>
+        <TestPattern>rpin.4852740874643457</TestPattern>
+    </Pattern>
+    <Pattern>
+        <Id>1</Id>
+        <Name>US SSN</Name>
+        <RegEx>[[:^alnum:]]{-}[\-][[:digit:]]{3}[ \-][[:digit:]]{2}[ \-][[:digit:]]{4}[[:^alnum:]]{-}[\-]</RegEx>
+
+        <Ignore>false</Ignore>
+        <Disabled>false</Disabled>
+        <TestPattern>444-42-1234</TestPattern>
+        <TestPattern>444-42-1240</TestPattern>
+        <TestPattern>446-60-3300.</TestPattern>
+        <TestPattern>.444-42-1236</TestPattern>
+    </Pattern>
+    <Pattern>
+        <!-- 16 digit number beginning with 4 formatted as either 16 digits or 4 groups of 4-->
+        <Id>20</Id>
+        <Name>Visa Number IIN Validated</Name>
+        <RegEx>[[:^alnum:]]{-}[\-]4[[:digit:]]{3}([ \-]?[[:digit:]]{4}){3}[[:^alnum:]]</RegEx>
+
+        <Ignore>false</Ignore>
+        <Disabled>true</Disabled>
+        <TestPattern>4035805321379573"</TestPattern>
+        <TestPattern>4039801202217624&amp;</TestPattern>
+        <TestPattern>4040392632239542'</TestPattern>
+        <TestPattern>4045124442700008,</TestPattern>
+        <TestPattern>4501 1192 7667 0456</TestPattern>
+        <TestPattern>(4011931118120422</TestPattern>
+        <TestPattern>;4020746055220707</TestPattern>
+        <TestPattern>=4022293356329638</TestPattern>
+        <TestPattern>>4023439536575249</TestPattern>
+        <TestPattern>[4026867073028460</TestPattern>
+        <TestPattern>|4031084342899019</TestPattern>
+    </Pattern>
+    <Pattern>
+        <!-- 16 digit number beginning with 4 formatted as either 16 digits or 4 groups of 4-->
+        <Id>2</Id>
+        <Name>Visa Number</Name>
+        <RegEx>[[:^alnum:]]{-}[\-]4[[:digit:]]{3}([ \-]?[[:digit:]]{4}){3}[[:^alnum:]]</RegEx>
+
+        <Ignore>false</Ignore>
+        <Disabled>false</Disabled>
+        <TestPattern>4034080867592127!</TestPattern>
+        <TestPattern>4042717058693384)</TestPattern>
+        <TestPattern>4047877347195578.</TestPattern>
+        <TestPattern>4049009004232647:</TestPattern>
+        <TestPattern>4050127469658258;</TestPattern>
+        <TestPattern>4051707982012593&lt;</TestPattern>
+        <TestPattern>4054865912333229?</TestPattern>
+        <TestPattern>4058647356768649]</TestPattern>
+        <TestPattern>4061640044030915|</TestPattern>
+        <TestPattern>4062842277967305}</TestPattern>
+        <TestPattern>4065927667045585_</TestPattern>
+        <TestPattern>4781 2297 0802 3371,</TestPattern>
+        <TestPattern>4927-6670-4558-7548</TestPattern>
+        <TestPattern>4927667045587548</TestPattern>
+        <TestPattern>"4005655943126993</TestPattern>
+        <TestPattern>#4006323628411185</TestPattern>
+        <TestPattern>'4010173762589070</TestPattern>
+        <TestPattern>,4015768271801547</TestPattern>
+        <TestPattern>.4017051523962344</TestPattern>
+        <TestPattern>:4019359830148855</TestPattern>
+        <TestPattern>_4064927667045586</TestPattern>
+        <TestPattern>{4030353704969434</TestPattern>
+    </Pattern>
+    <Pattern>
+        <!-- 16 digit number beginning with 51-55 formatted as either 16 digits or 4 groups of 4-->
+        <Id>21</Id>
+        <Name>MasterCard/Diner's Club US Number IIN Validated</Name>
+        <RegEx>[[:^alnum:]]{-}[\-]5[1-5][[:digit:]]{2}([ \-]?[[:digit:]]{4}){3}[[:^alnum:]]</RegEx>
+
+        <Ignore>false</Ignore>
+        <Disabled>true</Disabled>
+        <TestPattern>5481229702083371</TestPattern>
+        <TestPattern>5520086908054702</TestPattern>
+        <TestPattern>:5481 2297 0802 3371</TestPattern>
+    </Pattern>
+    <Pattern>
+        <!-- 16 digit number beginning with 51-55 formatted as either 16 digits or 4 groups of 4-->
+        <Id>3</Id>
+        <Name>MasterCard/Diner's Club US Number</Name>
+        <RegEx>[[:^alnum:]]{-}[\-]5[1-5][[:digit:]]{2}([ \-]?[[:digit:]]{4}){3}[[:^alnum:]]</RegEx>
+
+        <Ignore>false</Ignore>
+        <Disabled>false</Disabled>
+        <TestPattern>5194 6508 3320 9478</TestPattern>
+        <TestPattern>5194-6508-3320-9478</TestPattern>
+        <TestPattern>5297013179469964</TestPattern>
+        <TestPattern>5382953173762581</TestPattern>
+        <TestPattern>5490793111812042</TestPattern>
+    </Pattern>
+    <Pattern>
+        <!-- 15 digit number beginning with 34 or 37 formatted as either 15 digits or #### ###### #####-->
+        <Id>4</Id>
+        <Name>American Express Number</Name>
+        <RegEx>[[:^alnum:]]{-}[\-]3[47][[:digit:]]{2}[ \-]?[[:digit:]]{6}[ \-]?[[:digit:]]{5}[[:^alnum:]]</RegEx>
+
+        <Ignore>false</Ignore>
+        <Disabled>false</Disabled>
+        <TestPattern>3418 015495 21333</TestPattern>
+        <TestPattern>3418-015495-21333</TestPattern>
+        <TestPattern>341801549521333</TestPattern>
+        <TestPattern>347997905152392</TestPattern>
+        <TestPattern>3702 453219 73250</TestPattern>
+        <TestPattern>370213598301480</TestPattern>
+        <TestPattern>378574605522075</TestPattern>
+    </Pattern>
+    <Pattern>
+        <!-- 14 digit number beginning with 300-305, 36, or 38 formatted as either 14 digits or #### ###### ####-->
+        <Id>5</Id>
+        <Name>Diner's Club International Number</Name>
+        <RegEx>[[:^alnum:]]{-}[\-]30[0-5][[:digit:]][ \-]?[[:digit:]]{6}[ \-]?[[:digit:]]{4}[[:^alnum:]]</RegEx>
+        <RegEx>[[:^alnum:]]{-}[\-]3[68][[:digit:]]{2}[ \-]?[[:digit:]]{6}[ \-]?[[:digit:]]{4}[[:^alnum:]]</RegEx>
+
+        <Ignore>false</Ignore>
+        <Disabled>false</Disabled>
+        <TestPattern>3003 953657 5246</TestPattern>
+        <TestPattern>3003-953657-5246</TestPattern>
+        <TestPattern>30039536575246</TestPattern>
+        <TestPattern>30173664506143</TestPattern>
+        <TestPattern>30268078919500</TestPattern>
+        <TestPattern>30391867073022</TestPattern>
+        <TestPattern>30484686897943</TestPattern>
+        <TestPattern>30570625791336</TestPattern>
+        <TestPattern>3627 732189 0271</TestPattern>
+        <TestPattern>3634 289901 5360</TestPattern>
+        <TestPattern>3634-289901-5360</TestPattern>
+        <TestPattern>36342899015360</TestPattern>
+        <TestPattern>38433580363264</TestPattern>
+    </Pattern>
+    <Pattern>
+        <!-- 16 digit number formatted as either 16 digits or 4 groups of 4
+            beginning with any of the following prefixes
+
+            6011
+            622126-622129
+            62213-62219
+            6222-6228
+            622920-622925
+            644-459
+            65 -->
+        <Id>6</Id>
+        <Name>Discover Card Number / China Unionpay</Name>
+        <RegEx>[[:^alnum:]]{-}[\-]6011([ \-]?[[:digit:]]{4}){3}[[:^alnum:]]</RegEx>
+        <RegEx>[[:^alnum:]]{-}[\-]6221[ \-]?2[6-9][[:digit:]]{2}([ \-]?[[:digit:]]{4}){2}[[:^alnum:]]</RegEx>
+        <RegEx>[[:^alnum:]]{-}[\-]6221[ \-]?[3-9][[:digit:]]{3}([ \-]?[[:digit:]]{4}){2}[[:^alnum:]]</RegEx>
+        <RegEx>[[:^alnum:]]{-}[\-]622[2-8]([ \-]?[[:digit:]]{4}){3}[[:^alnum:]]</RegEx>
+        <RegEx>[[:^alnum:]]{-}[\-]6229[ \-]?[01][[:digit:]]{3}([ \-]?[[:digit:]]{4}){2}[[:^alnum:]]</RegEx>
+        <RegEx>[[:^alnum:]]{-}[\-]6229[ \-]?2[0-5][[:digit:]]{2}([ \-]?[[:digit:]]{4}){2}[[:^alnum:]]</RegEx>
+        <RegEx>[[:^alnum:]]{-}[\-]64[4-9][[:digit:]]([ \-]?[[:digit:]]{4}){3}[[:^alnum:]]</RegEx>
+        <RegEx>[[:^alnum:]]{-}[\-]65[[:digit:]]{2}([ \-]?[[:digit:]]{4}){3}[[:^alnum:]]</RegEx>
+
+        <Ignore>false</Ignore>
+        <Disabled>false</Disabled>
+        <TestPattern>6011 6721 9674 3389,</TestPattern>
+        <TestPattern>6011 8675 9212 8058</TestPattern>
+        <TestPattern>6011-8675-9212-8058</TestPattern>
+        <TestPattern>6011867592128058</TestPattern>
+        <TestPattern>6221 2642 5299 0504</TestPattern>
+        <TestPattern>6221264252990504</TestPattern>
+        <TestPattern>6221272566083585</TestPattern>
+        <TestPattern>6221286210723362</TestPattern>
+        <TestPattern>6221299026280121</TestPattern>
+        <TestPattern>6221302217623925</TestPattern>
+        <TestPattern>6221463223954744</TestPattern>
+        <TestPattern>6221563614723473</TestPattern>
+        <TestPattern>6221617058693384</TestPattern>
+        <TestPattern>6221763045842864</TestPattern>
+        <TestPattern>6221805226627752</TestPattern>
+        <TestPattern>6221902124442705</TestPattern>
+        <TestPattern>6222000883802679</TestPattern>
+        <TestPattern>6223938877347194</TestPattern>
+        <TestPattern>6224557020030694</TestPattern>
+        <TestPattern>6225386009004234</TestPattern>
+        <TestPattern>6226264127469655</TestPattern>
+        <TestPattern>6227825707982017</TestPattern>
+        <TestPattern>6228259434283706</TestPattern>
+        <TestPattern>6229021185433958</TestPattern>
+        <TestPattern>6229139268659123</TestPattern>
+        <TestPattern>6229203332263484</TestPattern>
+        <TestPattern>6229210218878707</TestPattern>
+        <TestPattern>6229224062760986</TestPattern>
+        <TestPattern>6229235384011098</TestPattern>
+        <TestPattern>6229240264735675</TestPattern>
+        <TestPattern>6229256864124870</TestPattern>
+        <TestPattern>6444403091842275</TestPattern>
+        <TestPattern>6457967301835752</TestPattern>
+        <TestPattern>6461133491953228</TestPattern>
+        <TestPattern>6471217789979645</TestPattern>
+        <TestPattern>6489765543015627</TestPattern>
+        <TestPattern>6498643080050795</TestPattern>
+        <TestPattern>6543400229735041</TestPattern>
+    </Pattern>
+    <Pattern>
+        <!-- 12-19 digit unformatted number beginning with one of the following prefixes:
+
+            5018
+            5020
+            5038
+            6304
+            6759
+            6761
+            6763 -->
+        <Id>7</Id>
+        <Name>Maestro Number</Name>
+        <RegEx>[[:^alnum:]]{-}[\-]5[ \-]?0[ \-]?1[ \-]?8([ \-]?[[:digit:]]){8,15}[[:^alnum:]]</RegEx>
+        <RegEx>[[:^alnum:]]{-}[\-]5[ \-]?0[ \-]?2[ \-]?0([ \-]?[[:digit:]]){8,15}[[:^alnum:]]</RegEx>
+        <RegEx>[[:^alnum:]]{-}[\-]5[ \-]?0[ \-]?3[ \-]?8([ \-]?[[:digit:]]){8,15}[[:^alnum:]]</RegEx>
+        <RegEx>[[:^alnum:]]{-}[\-]6[ \-]?3[ \-]?0[ \-]?4([ \-]?[[:digit:]]){8,15}[[:^alnum:]]</RegEx>
+        <RegEx>[[:^alnum:]]{-}[\-]6[ \-]?7[ \-]?5[ \-]?9([ \-]?[[:digit:]]){8,15}[[:^alnum:]]</RegEx>
+        <RegEx>[[:^alnum:]]{-}[\-]6[ \-]?7[ \-]?6[ \-]?1([ \-]?[[:digit:]]){8,15}[[:^alnum:]]</RegEx>
+        <RegEx>[[:^alnum:]]{-}[\-]6[ \-]?7[ \-]?6[ \-]?3([ \-]?[[:digit:]]){8,15}[[:^alnum:]]</RegEx>
+
+        <Ignore>false</Ignore>
+        <Disabled>false</Disabled>
+        <TestPattern>5 0 1 8 3 2 5 7 8 9 9 8</TestPattern>
+        <TestPattern>5 0 1 8 8 0 3 1 6 4 8 5 6 5 5 6 2 3 8</TestPattern>
+        <TestPattern>5 0 2 0 3 7 1 4 1 7 0 7</TestPattern>
+        <TestPattern>5 0 2 0 5 7 1 7 5 6 2 0 3 9 7 0 4 8 7</TestPattern>
+        <TestPattern>5 0 2 0 7 4 1 8 1 3 1 2 7 4 2 5 4 8 9</TestPattern>
+        <TestPattern>5 0 3 8 6 8 9 2 7 8 2 6</TestPattern>
+        <TestPattern>5 0 3 8 8 2 1 0 2 3 7 8 6 9 9 2 0 6 9</TestPattern>
+        <TestPattern>501832578998</TestPattern>
+        <TestPattern>5018803164856556238</TestPattern>
+        <TestPattern>5020 8772 8834 8713</TestPattern>
+        <TestPattern>502037141707</TestPattern>
+        <TestPattern>5020741813127425489</TestPattern>
+        <TestPattern>5038 8772 8621 8710</TestPattern>
+        <TestPattern>503868927826</TestPattern>
+        <TestPattern>5038821023786992069</TestPattern>
+        <TestPattern>6 3 0 4 0 7 9 5 3 5 5 9 0 7 6 8</TestPattern>
+        <TestPattern>6 3 0 4 2 5 1 1 7 6 7 4 6 8 2 5 8 0 5</TestPattern>
+        <TestPattern>6 3 0 4 3 4 9 3 5 6 8 4</TestPattern>
+        <TestPattern>6 3 0 4 8 7 0 7 2 5 1 1 0 7 1 8 3 4 2</TestPattern>
+        <TestPattern>6 7 5 9 1 7 1 4 4 3 7 0 4 8 1 3 6 8 2</TestPattern>
+        <TestPattern>6 7 5 9 5 0 7 4 8 0 4 5</TestPattern>
+        <TestPattern>6 7 6 1 7 0 8 5 8 9 7 7 0 6 2 2 0 8 0</TestPattern>
+        <TestPattern>6 7 6 1 7 3 0 8 5 0 1 7</TestPattern>
+        <TestPattern>6 7 6 3 7 0 6 1 7 5 3 0 5 0 6 1 7 3 5</TestPattern>
+        <TestPattern>6 7 6 3 8 4 7 2 3 3 7 2</TestPattern>
+        <TestPattern>6304 7752 2892 8815</TestPattern>
+        <TestPattern>6304079535590768</TestPattern>
+        <TestPattern>6304251176746825805</TestPattern>
+        <TestPattern>630434935684</TestPattern>
+        <TestPattern>6304870725110718342</TestPattern>
+        <TestPattern>630489264810837266</TestPattern>
+        <TestPattern>6759 2198 4488 2296</TestPattern>
+        <TestPattern>6759171443704813682</TestPattern>
+        <TestPattern>675950748045</TestPattern>
+        <TestPattern>675973927462048287</TestPattern>
+        <TestPattern>6761708589770622080</TestPattern>
+        <TestPattern>676173085017</TestPattern>
+        <TestPattern>6763706175305061735</TestPattern>
+        <TestPattern>676384723372</TestPattern>
+    </Pattern>
+    <Pattern>
+        <!-- -->
+        <Id>8</Id>
+        <Name>Formatted Canadian Social Insurance Number</Name>
+        <RegEx>[[:^alnum:]]{-}[\-][[:digit:]]{3}[ \-][[:digit:]]{3}[ \-][[:digit:]]{3}[[:^alnum:]]</RegEx>
+
+        <Ignore>false</Ignore>
+        <Disabled>false</Disabled>
+        <TestPattern>865-729-669</TestPattern>
+    </Pattern>
+    <Pattern>
+        <!-- -->
+        <Id>9</Id>
+        <Name>Unformatted US SSN or Canadian Social Insurance Number</Name>
+        <RegEx>[[:^alnum:]][[:digit:]]{9}[[:space:]\n\r]</RegEx>
+        <RegEx>[[:space:]\n\r][[:digit:]]{9}[[:^alnum:]]</RegEx>
+
+        <Ignore>false</Ignore>
+        <Disabled>false</Disabled>
+        <TestPattern>082572231.</TestPattern>
+        <TestPattern>120998646,</TestPattern>
+        <TestPattern>446603300</TestPattern>
+        <TestPattern>,320998644</TestPattern>
+        <TestPattern>,620998641</TestPattern>
+    </Pattern>
+    <Pattern>
+        <!-- 16 digit number beginning with 3528, 3529, or 353-358 formatted as either 16 digits or 4 groups of 4-->
+        <Id>10</Id>
+        <Name>JCB Number (Japan Credit Bureau)</Name>
+        <RegEx>[[:^alnum:]]{-}[\-]352[89]([ \-]?[[:digit:]]{4}){3}[[:^alnum:]]</RegEx>
+        <RegEx>[[:^alnum:]]{-}[\-]35[3-8][[:digit:]]([ \-]?[[:digit:]]{4}){3}[[:^alnum:]]</RegEx>
+
+        <Ignore>false</Ignore>
+        <Disabled>false</Disabled>
+        <TestPattern>3528 9415 1926 2911</TestPattern>
+        <TestPattern>3528-9415-1926-2911</TestPattern>
+        <TestPattern>3528941519262911</TestPattern>
+        <TestPattern>3529283519248130</TestPattern>
+        <TestPattern>3534207758441547</TestPattern>
+        <TestPattern>3544125765343365</TestPattern>
+        <TestPattern>3552176408356073</TestPattern>
+        <TestPattern>3569 6061 0090 1835</TestPattern>
+        <TestPattern>3569-6061-0090-1835</TestPattern>
+        <TestPattern>3569606100901835</TestPattern>
+        <TestPattern>3575485387582614</TestPattern>
+        <TestPattern>3584704813793515</TestPattern>
+    </Pattern>
+    <Pattern>
+        <!-- 16-19 digit unformatted number beginning with 6304, 6706, 6771, or 6709 -->
+        <Id>11</Id>
+        <Name>Laser Card</Name>
+        <RegEx>[[:^alnum:]]{-}[\-]6[ \-]?7[ \-]?0[ \-]?6([ \-]?[[:digit:]]){12,15}[[:^alnum:]]</RegEx>
+        <RegEx>[[:^alnum:]]{-}[\-]6[ \-]?7[ \-]?7[ \-]?1([ \-]?[[:digit:]]){12,15}[[:^alnum:]]</RegEx>
+        <RegEx>[[:^alnum:]]{-}[\-]6[ \-]?7[ \-]?0[ \-]?9([ \-]?[[:digit:]]){12,15}[[:^alnum:]]</RegEx>
+
+        <Ignore>false</Ignore>
+        <Disabled>false</Disabled>
+        <TestPattern>6 7 0 6 5 3 7 0 5 8 1 0 1 5 4 9</TestPattern>
+        <TestPattern>6 7 0 6 8 6 4 8 9 9 6 4 8 8 3 1 5 8 0</TestPattern>
+        <TestPattern>6 7 0 9 5 3 7 2 8 4 0 8 0 6 1 9 3 8 2</TestPattern>
+        <TestPattern>6 7 0 9 6 6 4 6 4 1 0 9 1 4 7 9</TestPattern>
+        <TestPattern>6 7 7 1 3 6 6 7 3 4 9 6 5 1 9 6</TestPattern>
+        <TestPattern>6 7 7 1 4 5 2 4 5 5 5 7 4 3 5 5 9 1 2</TestPattern>
+        <TestPattern>6706537058101549</TestPattern>
+        <TestPattern>6706864899648831580</TestPattern>
+        <TestPattern>6709537284080619382</TestPattern>
+        <TestPattern>6709664641091479</TestPattern>
+        <TestPattern>6771366734965196</TestPattern>
+        <TestPattern>6771452455574355912</TestPattern>
+    </Pattern>
+    <Pattern>
+        <!-- 16, 18, or 19 digit unformatted number beginning with 6334 or 6767 -->
+        <Id>12</Id>
+        <Name>Solo Card</Name>
+        <RegEx>[[:^alnum:]]{-}[\-]6[ \-]?3[ \-]?3[ \-]?4([ \-]?[[:digit:]]){12}[[:^alnum:]]</RegEx>
+        <RegEx>[[:^alnum:]]{-}[\-]6[ \-]?7[ \-]?6[ \-]?7([ \-]?[[:digit:]]){12}[[:^alnum:]]</RegEx>
+        <RegEx>[[:^alnum:]]{-}[\-]6[ \-]?3[ \-]?3[ \-]?4([ \-]?[[:digit:]]){14,15}[[:^alnum:]]</RegEx>
+        <RegEx>[[:^alnum:]]{-}[\-]6[ \-]?7[ \-]?6[ \-]?7([ \-]?[[:digit:]]){14,15}[[:^alnum:]]</RegEx>
+
+        <Ignore>false</Ignore>
+        <Disabled>false</Disabled>
+        <TestPattern>6 3 3 4 0 0 5 3 6 9 3 5 2 7 3 6 6 7 3</TestPattern>
+        <TestPattern>6 3 3 4 3 7 3 3 0 1 5 6 8 9 0 8</TestPattern>
+        <TestPattern>6 3 3 4 3 8 4 4 0 2 7 4 2 5 5 7 3 4</TestPattern>
+        <TestPattern>6 7 6 7 1 2 0 6 1 8 6 7 7 3 9 3</TestPattern>
+        <TestPattern>6 7 6 7 3 7 0 3 7 4 9 1 9 4 5 5 7 1</TestPattern>
+        <TestPattern>6 7 6 7 9 9 5 9 3 6 5 6 0 0 3 7 2 5 1</TestPattern>
+        <TestPattern>6334005369352736673</TestPattern>
+        <TestPattern>6334373301568908</TestPattern>
+        <TestPattern>633438440274255734</TestPattern>
+        <TestPattern>6767120618677393</TestPattern>
+        <TestPattern>676737037491945571</TestPattern>
+        <TestPattern>6767995936560037251</TestPattern>
+    </Pattern>
+    <Pattern>
+        <!-- 16-19 digit unformatted number beginning with any of the following prefixes
+
+            622126-622129
+            62213-62219
+            6222-6228
+            622920-622925 -->
+        <Id>13</Id>
+        <Name>China Unionpay</Name>
+        <RegEx>[[:^alnum:]]{-}[\-]6[ \-]?2[ \-]?2[ \-]?1[ \-]?2[ \-]?[6-9]([ \-]?[[:digit:]]){10,13}[[:^alnum:]]</RegEx>
+        <RegEx>[[:^alnum:]]{-}[\-]6[ \-]?2[ \-]?2[ \-]?1[ \-]?[3-9]([ \-]?[[:digit:]]){11,14}[[:^alnum:]]</RegEx>
+        <RegEx>[[:^alnum:]]{-}[\-]6[ \-]?2[ \-]?2[ \-]?[2-8]([ \-]?[[:digit:]]){12,15}[[:^alnum:]]</RegEx>
+        <RegEx>[[:^alnum:]]{-}[\-]6[ \-]?2[ \-]?2[ \-]?9[ \-]?[01]([ \-]?[[:digit:]]){11,14}[[:^alnum:]]</RegEx>
+        <RegEx>[[:^alnum:]]{-}[\-]6[ \-]?2[ \-]?2[ \-]?9[ \-]?2[ \-]?[0-5]([ \-]?[[:digit:]]){10,13}[[:^alnum:]]</RegEx>
+
+        <Ignore>false</Ignore>
+        <Disabled>false</Disabled>
+        <TestPattern>6 2 2 1 2 6 0 8 4 2 4 2 1 9 3 9 4 3 6</TestPattern>
+        <TestPattern>6 2 2 1 2 6 4 2 5 2 9 9 0 5 0 4</TestPattern>
+        <TestPattern>6 2 2 1 2 7 2 5 6 6 0 8 3 5 8 5</TestPattern>
+        <TestPattern>6 2 2 1 2 7 2 9 3 4 3 0 1 9 8 1 3 7 6</TestPattern>
+        <TestPattern>6 2 2 1 2 8 6 2 1 0 7 2 3 3 6 2</TestPattern>
+        <TestPattern>6 2 2 1 2 8 8 5 2 8 2 4 5 7 4 3 4 0 5</TestPattern>
+        <TestPattern>6 2 2 1 2 9 2 7 1 6 5 9 8 5 7 1 0 0 2</TestPattern>
+        <TestPattern>6 2 2 1 2 9 9 0 2 6 2 8 0 1 2 1</TestPattern>
+        <TestPattern>6 2 2 1 3 0 2 2 1 7 6 2 3 9 2 5</TestPattern>
+        <TestPattern>6 2 2 1 3 7 5 2 8 2 3 2 6 0 0 9 1 5 3</TestPattern>
+        <TestPattern>6 2 2 1 4 1 3 7 3 5 4 1 5 5 1 5 7 9 8</TestPattern>
+        <TestPattern>6 2 2 1 4 6 3 2 2 3 9 5 4 7 4 4</TestPattern>
+        <TestPattern>6 2 2 1 5 2 4 3 7 2 5 0 5 6 5 6 6 6 6</TestPattern>
+        <TestPattern>6 2 2 1 5 6 3 6 1 4 7 2 3 4 7 3</TestPattern>
+        <TestPattern>6 2 2 1 6 1 7 0 5 8 6 9 3 3 8 4</TestPattern>
+        <TestPattern>6 2 2 1 6 4 2 2 7 0 4 2 7 1 1 3 0 3 9</TestPattern>
+        <TestPattern>6 2 2 1 7 1 6 7 3 2 8 2 1 2 7 4 5 4 4</TestPattern>
+        <TestPattern>6 2 2 1 7 6 3 0 4 5 8 4 2 8 6 4</TestPattern>
+        <TestPattern>6 2 2 1 8 0 5 2 2 6 6 2 7 7 5 2</TestPattern>
+        <TestPattern>6 2 2 1 8 1 0 0 5 3 9 4 6 4 0 1 3 4 1</TestPattern>
+        <TestPattern>6 2 2 1 9 0 2 1 2 4 4 4 2 7 0 5</TestPattern>
+        <TestPattern>6 2 2 1 9 7 5 5 2 2 0 5 7 2 1 2 9 8 7</TestPattern>
+        <TestPattern>6 2 2 2 0 0 0 8 8 3 8 0 2 6 7 9</TestPattern>
+        <TestPattern>6 2 2 2 4 2 5 6 3 6 0 2 4 8 9 3 1 3 5</TestPattern>
+        <TestPattern>6 2 2 2 6 5 4 5 0 6 7 3 0 7 7 9 3 5 1</TestPattern>
+        <TestPattern>6 2 2 3 0 8 7 7 0 1 0 7 0 1 9 9 2 0 4</TestPattern>
+        <TestPattern>6 2 2 3 9 3 8 8 7 7 3 4 7 1 9 4</TestPattern>
+        <TestPattern>6 2 2 4 0 4 5 4 0 3 2 9 2 5 1 1 7 6 6</TestPattern>
+        <TestPattern>6 2 2 4 5 5 7 0 2 0 0 3 0 6 9 4</TestPattern>
+        <TestPattern>6 2 2 5 3 3 3 3 2 4 1 6 3 3 7 6 2 0 4</TestPattern>
+        <TestPattern>6 2 2 5 3 8 6 0 0 9 0 0 4 2 3 4</TestPattern>
+        <TestPattern>6 2 2 6 1 0 9 1 3 3 7 6 2 1 0 4 5 8 0</TestPattern>
+        <TestPattern>6 2 2 6 2 6 4 1 2 7 4 6 9 6 5 5</TestPattern>
+        <TestPattern>6 2 2 7 8 2 5 7 0 7 9 8 2 0 1 7</TestPattern>
+        <TestPattern>6 2 2 7 9 0 7 4 9 6 7 3 2 0 6 8 1 8 1</TestPattern>
+        <TestPattern>6 2 2 8 2 5 9 4 3 4 2 8 3 7 0 6</TestPattern>
+        <TestPattern>6 2 2 8 3 3 2 0 7 1 8 1 1 7 3 4 0 4 6</TestPattern>
+        <TestPattern>6 2 2 9 0 1 3 7 3 7 1 9 4 2 2 0 8 8 6</TestPattern>
+        <TestPattern>6 2 2 9 0 2 1 1 8 5 4 3 3 9 5 8</TestPattern>
+        <TestPattern>6 2 2 9 1 2 2 3 6 4 7 5 5 3 2 3 4 0 1</TestPattern>
+        <TestPattern>6 2 2 9 1 3 9 2 6 8 6 5 9 1 2 3</TestPattern>
+        <TestPattern>6 2 2 9 2 0 3 3 3 2 2 6 3 4 8 4</TestPattern>
+        <TestPattern>6 2 2 9 2 0 6 7 4 6 0 3 3 2 8 0 1 7 2</TestPattern>
+        <TestPattern>6 2 2 9 2 1 0 2 1 8 8 7 8 7 0 7</TestPattern>
+        <TestPattern>6 2 2 9 2 1 5 3 8 8 1 2 7 1 6 3 4 1 7</TestPattern>
+        <TestPattern>6 2 2 9 2 2 1 2 9 6 7 3 8 4 3 2 4 7 1</TestPattern>
+        <TestPattern>6 2 2 9 2 2 4 0 6 2 7 6 0 9 8 6</TestPattern>
+        <TestPattern>6 2 2 9 2 3 3 0 5 7 6 7 2 9 5 5 6 4 6</TestPattern>
+        <TestPattern>6 2 2 9 2 3 5 3 8 4 0 1 1 0 9 8</TestPattern>
+        <TestPattern>6 2 2 9 2 4 0 2 6 4 7 3 5 6 7 5</TestPattern>
+        <TestPattern>6 2 2 9 2 4 5 8 0 5 5 9 4 3 0 8 5 3 4</TestPattern>
+        <TestPattern>6 2 2 9 2 4 8 2 6 1 7 6 4 4 2 4 9 7 3</TestPattern>
+        <TestPattern>6 2 2 9 2 5 5 8 1 3 4 1 3 2 2 0 1 4 3</TestPattern>
+        <TestPattern>6 2 2 9 2 5 6 8 6 4 1 2 4 8 7 0</TestPattern>
+        <TestPattern>6221260842421939436</TestPattern>
+        <TestPattern>6221272934301981376</TestPattern>
+        <TestPattern>6221288528245743405</TestPattern>
+        <TestPattern>6221292716598571002</TestPattern>
+        <TestPattern>6221375282326009153</TestPattern>
+        <TestPattern>6221413735415515798</TestPattern>
+        <TestPattern>6221524372505656666</TestPattern>
+        <TestPattern>6221642270427113039</TestPattern>
+        <TestPattern>6221716732821274544</TestPattern>
+        <TestPattern>6221810053946401341</TestPattern>
+        <TestPattern>6221975522057212987</TestPattern>
+        <TestPattern>6222425636024893135</TestPattern>
+        <TestPattern>6223087701070199204</TestPattern>
+        <TestPattern>6224045403292511766</TestPattern>
+        <TestPattern>6225333324163376204</TestPattern>
+        <TestPattern>6226109133762104580</TestPattern>
+        <TestPattern>6227907496732068181</TestPattern>
+        <TestPattern>6228332071811734046</TestPattern>
+        <TestPattern>6229013737194220886</TestPattern>
+        <TestPattern>6229122364755323401</TestPattern>
+        <TestPattern>6229206746033280172</TestPattern>
+        <TestPattern>6229215388127163417</TestPattern>
+        <TestPattern>6229221296738432471</TestPattern>
+        <TestPattern>6229233057672955646</TestPattern>
+        <TestPattern>6229245805594308534</TestPattern>
+        <TestPattern>6229255813413220143</TestPattern>
+    </Pattern>
+    <Pattern>
+        <!-- 16 Digit unformatted number beginning with 4 -->
+        <Id>14</Id>
+        <Name>Visa Number Unformatted</Name>
+        <RegEx>[[:^alnum:]]{-}[\-]4([ \-]?[[:digit:]]){15}[[:^alnum:]]</RegEx>
+
+        <Ignore>false</Ignore>
+        <Disabled>false</Disabled>
+        <TestPattern>4 9 2 7 6 6 7 0 4 5 5 8 7 5 4 8</TestPattern>
+    </Pattern>
+    <Pattern>
+        <!-- 16 Digit unformatted number beginning with 51-55 -->
+        <Id>15</Id>
+        <Name>MasterCard/Diner's Club US Number Unformatted</Name>
+        <RegEx>[[:^alnum:]]{-}[\-]5[ \-]?[1-5]([ \-]?[[:digit:]]){14}[[:^alnum:]]</RegEx>
+
+        <Ignore>false</Ignore>
+        <Disabled>false</Disabled>
+        <TestPattern>5 1 9 4 6 5 0 8 3 3 2 0 9 4 7 8</TestPattern>
+        <TestPattern>5 2 9 7 0 1 3 1 7 9 4 6 9 9 6 4</TestPattern>
+        <TestPattern>5 3 8 2 9 5 3 1 7 3 7 6 2 5 8 1</TestPattern>
+        <TestPattern>5 4 9 0 7 9 3 1 1 1 8 1 2 0 4 2</TestPattern>
+        <TestPattern>5 5 2 0 0 8 6 9 0 8 0 5 4 7 0 2</TestPattern>
+    </Pattern>
+    <Pattern>
+        <!-- 15 Digit unformatted number beginning with 34 or 37 -->
+        <Id>16</Id>
+        <Name>American Express Number Unformatted</Name>
+        <RegEx>[[:^alnum:]]{-}[\-]3[ \-]?[47]([ \-]?[[:digit:]]){13}[[:^alnum:]]</RegEx>
+
+        <Ignore>false</Ignore>
+        <Disabled>false</Disabled>
+        <TestPattern>3 4 1 8 0 1 5 4 9 5 2 1 3 3 3</TestPattern>
+        <TestPattern>3 4 7 9 9 7 9 0 5 1 5 2 3 9 2</TestPattern>
+        <TestPattern>3 7 0 2 1 3 5 9 8 3 0 1 4 8 0</TestPattern>
+        <TestPattern>3 7 8 5 7 4 6 0 5 5 2 2 0 7 5</TestPattern>
+    </Pattern>
+    <Pattern>
+        <!-- 14 digit unformatted number beginning with 300-305, 36, or 38 -->
+        <Id>17</Id>
+        <Name>Diner's Club International Number Unformatted</Name>
+        <RegEx>[[:^alnum:]]{-}[\-]3[ \-]?0[ \-]?[0-5]([ \-]?[[:digit:]]){11}[[:^alnum:]]</RegEx>
+        <RegEx>[[:^alnum:]]{-}[\-]3[ \-]?[68]([ \-]?[[:digit:]]){12}[[:^alnum:]]</RegEx>
+
+        <Ignore>false</Ignore>
+        <Disabled>false</Disabled>
+        <TestPattern>3 0 0 3 9 5 3 6 5 7 5 2 4 6</TestPattern>
+        <TestPattern>3 0 1 7 3 6 6 4 5 0 6 1 4 3</TestPattern>
+        <TestPattern>3 0 2 6 8 0 7 8 9 1 9 5 0 0</TestPattern>
+        <TestPattern>3 0 3 9 1 8 6 7 0 7 3 0 2 2</TestPattern>
+        <TestPattern>3 0 4 8 4 6 8 6 8 9 7 9 4 3</TestPattern>
+        <TestPattern>3 0 5 7 0 6 2 5 7 9 1 3 3 6</TestPattern>
+        <TestPattern>3 6 3 4 2 8 9 9 0 1 5 3 6 0</TestPattern>
+        <TestPattern>3 8 4 3 3 5 8 0 3 6 3 2 6 4</TestPattern>
+    </Pattern>
+    <Pattern>
+        <!-- 16 Digit unformatted number beginning with 6011, 644-649, or 65 -->
+        <Id>18</Id>
+        <Name>Discover Card Number Unformatted</Name>
+        <RegEx>[[:^alnum:]]{-}[\-]6[ \-]?0[ \-]?1[ \-]?1([ \-]?[[:digit:]]){12}[[:^alnum:]]</RegEx>
+        <RegEx>[[:^alnum:]]{-}[\-]6[ \-]?4[ \-]?[4-9]([ \-]?[[:digit:]]){13}[[:^alnum:]]</RegEx>
+        <RegEx>[[:^alnum:]]{-}[\-]6[ \-]?5([ \-]?[[:digit:]]){14}[[:^alnum:]]</RegEx>
+
+        <Ignore>false</Ignore>
+        <Disabled>false</Disabled>
+        <TestPattern>6 0 1 1 8 6 7 5 9 2 1 2 8 0 5 8</TestPattern>
+        <TestPattern>6 4 4 4 4 0 3 0 9 1 8 4 2 2 7 5</TestPattern>
+        <TestPattern>6 4 5 7 9 6 7 3 0 1 8 3 5 7 5 2</TestPattern>
+        <TestPattern>6 4 6 1 1 3 3 4 9 1 9 5 3 2 2 8</TestPattern>
+        <TestPattern>6 4 7 1 2 1 7 7 8 9 9 7 9 6 4 5</TestPattern>
+        <TestPattern>6 4 8 9 7 6 5 5 4 3 0 1 5 6 2 7</TestPattern>
+        <TestPattern>6 4 9 8 6 4 3 0 8 0 0 5 0 7 9 5</TestPattern>
+        <TestPattern>6 5 4 3 4 0 0 2 2 9 7 3 5 0 4 1</TestPattern>
+    </Pattern>
+    <Pattern>
+        <!-- 16 Digit unformatted number beginning with 3528, 3529, or 353-358 -->
+        <Id>19</Id>
+        <Name>JCB Number (Japan Credit Bureau) Unformatted</Name>
+        <RegEx>[[:^alnum:]]{-}[\-]3[ \-]?5[ \-]?2[ \-]?[89]([ \-]?[[:digit:]]){12}[[:^alnum:]]</RegEx>
+        <RegEx>[[:^alnum:]]{-}[\-]3[ \-]?5[ \-]?[3-8]([ \-]?[[:digit:]]){13}[[:^alnum:]]</RegEx>
+
+        <Ignore>false</Ignore>
+        <Disabled>false</Disabled>
+        <TestPattern>3 5 2 8 9 4 1 5 1 9 2 6 2 9 1 1</TestPattern>
+        <TestPattern>3 5 2 9 2 8 3 5 1 9 2 4 8 1 3 0</TestPattern>
+        <TestPattern>3 5 3 4 2 0 7 7 5 8 4 4 1 5 4 7</TestPattern>
+        <TestPattern>3 5 4 4 1 2 5 7 6 5 3 4 3 3 6 5</TestPattern>
+        <TestPattern>3 5 5 2 1 7 6 4 0 8 3 5 6 0 7 3</TestPattern>
+        <TestPattern>3 5 6 9 6 0 6 1 0 0 9 0 1 8 3 5</TestPattern>
+        <TestPattern>3 5 7 5 4 8 5 3 8 7 5 8 2 6 1 4</TestPattern>
+        <TestPattern>3 5 8 4 7 0 4 8 1 3 7 9 3 5 1 5</TestPattern>
+    </Pattern>
+    <Pattern>
+        <!-- Strings indicating that nearby test is a SSN -->
+        <Id>22</Id>
+        <Name>SSN Label</Name>
+        <RegEx>[[:^alnum:]][Ss][Ss][Nn][[:^alnum:]]</RegEx>
+        <RegEx>[[:^alnum:]][Ss][Ss]#[[:^alnum:]]</RegEx>
+        <RegEx>[[:^alnum:]][Ss][Oo][Cc][Ii][Aa][Ll]\ [Ss][Ee][Cc].</RegEx>
+        <RegEx>[[:^alnum:]][Ss][Oo][Cc]\.?\ [Ss][Ee][Cc].</RegEx>
+
+        <Ignore>false</Ignore>
+        <Disabled>true</Disabled>
+        <TestPattern>SSN</TestPattern>
+        <TestPattern>SSN/</TestPattern>
+        <TestPattern>SS#</TestPattern>
+        <TestPattern>soc. sec</TestPattern>
+        <TestPattern>social secu</TestPattern>
+    </Pattern>
+    <Pattern>
+        <!-- Strings indicating that nearby text is a credit or debit card number -->
+        <Id>23</Id>
+        <Name>Debit/Credit Label</Name>
+        <RegEx>[[:^alnum:]][Cc][Rr][Ee][Dd][Ii][Tt][[:^alnum:]]</RegEx>
+        <RegEx>[[:^alnum:]][Dd][Ee][Bb][Ii][Tt][[:^alnum:]]</RegEx>
+        <RegEx>[[:^alnum:]][Cc][Cc]#[[:^alnum:]]</RegEx>
+        <RegEx>[[:^alnum:]][Cc][Cc][Nn][Uu][Mm][[:^alnum:]]</RegEx>
+        <RegEx>[[:^alnum:]][Cc][Aa][Rr][Dd].?[Nn][Uu][Mm][Bb][Ee][Rr][[:^alnum:]]</RegEx>
+        <RegEx>[[:^alnum:]][Cc][Rr][Ee][Dd][Ii][Tt][Cc][Aa][Rr][Dd][[:^alnum:]]</RegEx>
+
+        <Ignore>false</Ignore>
+        <Disabled>true</Disabled>
+        <TestPattern>CC#</TestPattern>
+        <TestPattern>Card Number</TestPattern>
+        <TestPattern>Credit</TestPattern>
+        <TestPattern>Debit,</TestPattern>
+        <TestPattern>ccnum=</TestPattern>
+        <TestPattern>creditcard=</TestPattern>
+        <TestPattern>>cardnumber:</TestPattern>
+    </Pattern>
+    <Pattern>
+        <!-- Strings indicating that nearby text is a visa number -->
+        <Id>24</Id>
+        <Name>Visa Label</Name>
+        <RegEx>[[:^alnum:]][Vv][Ii][Ss][Aa][[:^alnum:]]</RegEx>
+
+        <Ignore>false</Ignore>
+        <Disabled>true</Disabled>
+        <TestPattern>VISA,</TestPattern>
+        <TestPattern>Visa</TestPattern>
+        <TestPattern>visa,</TestPattern>
+    </Pattern>
+    <Pattern>
+        <!-- Strings indicating that nearby text is a MasterCard number or Diner's Club US number -->
+        <Id>25</Id>
+        <Name>MasterCard/Diner's Club Label</Name>
+        <RegEx>[[:^alnum:]][Mm][Aa][Ss][Tt][Ee][Rr]\ ?[Cc][Aa][Rr][Dd][[:^alnum:]]</RegEx>
+        <RegEx>[[:^alnum:]]MC[[:^alnum:]]</RegEx>
+        <RegEx>[[:^alnum:]][Dd][Ii][Nn][Ee][Rr].?[Ss][[:^alnum:]]</RegEx>
+
+        <Ignore>false</Ignore>
+        <Disabled>true</Disabled>
+        <TestPattern>Diner's</TestPattern>
+        <TestPattern>Diners</TestPattern>
+        <TestPattern>MC</TestPattern>
+        <TestPattern>Master card</TestPattern>
+        <TestPattern>MasterCard</TestPattern>
+        <TestPattern>Mastercard</TestPattern>
+    </Pattern>
+    <Pattern>
+        <!-- Strings indicating that nearby text is an American Express number -->
+        <Id>26</Id>
+        <Name>American Express Label</Name>
+        <RegEx>[[:^alnum:]][Aa][Mm][Ee][Rr][Ii][Cc][Aa][Nn]\ [Ee][Xx][Pp][Rr][Ee][Ss][Ss][[:^alnum:]]</RegEx>
+        <RegEx>[[:^alnum:]][Aa][Mm][Ee][Xx][[:^alnum:]]</RegEx>
+
+        <Ignore>false</Ignore>
+        <Disabled>true</Disabled>
+        <TestPattern>American Express,</TestPattern>
+        <TestPattern>Amex</TestPattern>
+    </Pattern>
+    <Pattern>
+        <!-- Strings indicating that nearby text is a Discover or china unionpay number -->
+        <Id>27</Id>
+        <Name>Discover/China Unionpay Label</Name>
+        <RegEx>[[:^alnum:]][Dd][Ii][Ss][Cc][Oo][Vv][Ee][Rr][[:^alnum:]]</RegEx>
+        <RegEx>[[:^alnum:]][Dd][Ii][Ss][Cc][Oo][Vv][Ee][Rr]\ ?[Cc][Aa][Rr][Dd][[:^alnum:]]</RegEx>
+        <RegEx>[[:^alnum:]][Uu][Nn][Ii][Oo][Nn][Pp][Aa][Yy][[:^alnum:]]</RegEx>
+
+        <Ignore>false</Ignore>
+        <Disabled>true</Disabled>
+        <TestPattern>Discover</TestPattern>
+        <TestPattern>DiscoverCard</TestPattern>
+        <TestPattern>Discover Card</TestPattern>
+        <TestPattern>Unionpay</TestPattern>
+        <TestPattern>unionpay</TestPattern>
+    </Pattern>
+    <Pattern>
+        <!-- Strings indicating that nearby text is a Maestro number number -->
+        <Id>28</Id>
+        <Name>Maestro Label</Name>
+        <RegEx>[[:^alnum:]][Mm][Aa][Ee][Ss][Tt][Rr][Oo][[:^alnum:]]</RegEx>
+
+        <Ignore>false</Ignore>
+        <Disabled>true</Disabled>
+        <TestPattern>MAESTRO</TestPattern>
+        <TestPattern>Maestro</TestPattern>
+    </Pattern>
+    <Pattern>
+        <!-- Strings indicating that nearby text is a JCB Number (Japan Credit Bureau) number -->
+        <Id>29</Id>
+        <Name>JCB (Japan Credit Bureau) Label</Name>
+        <RegEx>[[:^alnum:]][Jj][Cc][Bb][[:^alnum:]]</RegEx>
+        <RegEx>[[:^alnum:]][Jj][Aa][Pp][Aa][Nn]\ [Cc][Rr][Ee][Dd][Ii][Tt][[:^alnum:]]</RegEx>
+
+        <Ignore>false</Ignore>
+        <Disabled>true</Disabled>
+        <TestPattern>JCB</TestPattern>
+        <TestPattern>Japan Credit</TestPattern>
+        <TestPattern>jcb</TestPattern>
+    </Pattern>
+    <Pattern>
+        <!-- Strings indicating that nearby text is a Laser number -->
+        <Id>30</Id>
+        <Name>Laser Label</Name>
+        <RegEx>[[:^alnum:]][Ll][Aa][Ss][Ee][Rr][[:^alnum:]]</RegEx>
+
+        <Ignore>false</Ignore>
+        <Disabled>true</Disabled>
+        <TestPattern>LASER</TestPattern>
+        <TestPattern>Laser</TestPattern>
+    </Pattern>
+    <Pattern>
+        <!-- Strings indicating that nearby text is a Solo number -->
+        <Id>31</Id>
+        <Name>Solo Label</Name>
+        <RegEx>[[:^alnum:]][Ss][Oo][Ll][Oo][[:^alnum:]]</RegEx>
+
+        <Ignore>false</Ignore>
+        <Disabled>true</Disabled>
+        <TestPattern>SOLO</TestPattern>
+        <TestPattern>Solo</TestPattern>
+    </Pattern>
+</Patterns>
