@@ -16,4 +16,4 @@ The matching is greedy, meaning the longest match will always be returned. While
 A scanner instance is constructed with a  ScannerCtxt object. A ScannerCtxtis built with the ScannerCtxt compiler, which can compile a context from a pattern definition file defined in XML or JSON. The compilation step takes a long time and isn't needed unless there is a change to the pattern list. In normal operation, a context should be compiled and new
 Scanner instances created with the existing context until the context needs to be changed.
 
-The scanner itself is also "pausable" This means that partial files can be scanned and ocmpleted when complete. The scanner state is updated with tokens serially and stores state specific to the input data being scanned.
+The scanner itself is also "pausable" This means that partial files can be scanned progressively until complete. The scanner state is updated with tokens serially and stores state specific to the input data being scanned.
